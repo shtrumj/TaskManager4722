@@ -67,5 +67,6 @@ class WorkReportForm(FlaskForm):
     client = StringField('שם המשתמש')
     description = StringField('תאור הקריאה')
     classification = SelectField('סוג התקלה', choices=[('בעיית תוכנה','בעיית תוכנה'),('בעיית חומרה','בעיית חומרה')])
+    status = SelectField('סטטוס', choices=[('פתוח','פתוח'),('בטיפול','בטיפול'),('סגור','סגור')])
     resolve= TextAreaField('תיאור הפתרון')
     submit = SubmitField('שלח דוח')

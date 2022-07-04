@@ -1,5 +1,6 @@
 from .extentions import db, login_manager
 from flask_login import UserMixin
+from datetime import datetime
 from wtforms import StringField, PasswordField, BooleanField
 from werkzeug.security import check_password_hash, generate_password_hash
 from wtforms_sqlalchemy.fields import QuerySelectField
@@ -100,17 +101,19 @@ class WorkReports(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     customer = db.Column(db.String(20))
     client= db.Column(db.String(20))
+    status = db.Column(db.String(20))
     description = db.Column(db.String(30))
     classification = db.Column(db.String(20))
     resolve = db.Column(db.String(150))
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    def __init__(self, customer, client, description,classification, resolve):
+    def __init__(self, customer, client, description,classification, resolve, status):
         self.customer = customer
         self.client = client
         self.description = description
         self.classification = classification
         self.resolve = resolve
-
+        self.status = status
 
 
 def customer_query():
